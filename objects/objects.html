@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function isEmpty(obj) {
+            if (!obj) return true;
+            if (Object.keys(obj).length == 0) return true;
+            return false;
+
+        }
+        let obj1 = { a: 1, b: 2, c: 9 }
+        let obj2 = {"a", "b", "b"};
+        let obj3 = {};
+        let obj4 = null;
+        console.log(isEmpty(obj1));
+        console.log(isEmpty(obj2));
+        console.log(isEmpty(obj3));
+        console.log(isEmpty(obj4));
+        console.log('');
+        let teamMoney = {
+            lead: 100e3,
+            junior: 30e3,
+            junior1: 35e3,
+            pm: 55e3,
+        }
+        let keys = Object.keys(teamMoney);
+        console.log(keys);
+        let sum0 = 0
+        for (let key of keys) {
+            let im = teamMoney[key];
+            //console.log(im)
+            sum0 += im
+        }
+        console.log(sum0);
+        // by values
+        let vals = Object.values(teamMoney);
+        let sum1 = 0;
+        for (let v of vals) sum1 += v;
+        console.log(sum1)
+
+        //list of rows
+        let teamData = [
+            { id: 1, name: "Ivan", sum: 100e3 },
+            { id: 2, name: "Vladimir", sum: 40e3 },
+            { id: 3, name: "Alex", sum: 35e3 },
+        ];
+        let sum2 = teamData.map(function (item) {
+            return item.sum;
+        }).reduce(function (prev, curr) {
+            return prev + curr;
+        }, 0);
+
+        console.log(sum2)
+
+        let sum3 = teamData.map(item => item.sum).reduce((a, b) => a + b, 0)
+        console.log(sum3)
+          
+        console.log(' multi ');
+        let obj5 = {
+            id: 5,
+            room: 404,
+            name: "Vasya",
+            course: 2,
+        }
+        console.log(obj5);
+        function multiplyObject(ob, n = 2) {
+            let keys = Object.keys(ob);
+            for (let k of keys) {
+                if (+ob[k] != ob[k]) continue;
+                ob[k] *= n;
+            }
+        }
+        multiplyObject(obj5, 0.5);
+        console.log(obj5);
+
+
+        console.log("# fill array")
+
+        function fillArray(size, value) {
+            let ar = new Array();
+            for (let i = 0; i < size; i++) ar.push(value);
+            return ar;
+        }
+        let arr1 = fillArray(10, 'x');
+        console.log(arr1);
+
+
+        function fillArrayModern(size, value) {
+            let ar = new Array(size).fill(value);
+            return ar;
+        }
+
+        console.log(fillArrayModern(4, 'a'));
+
+
+        console.log('# revers');
+        function arReverse(arIn) {
+            let arOut = [];
+            for (let i = 0; i < arIn.length; i++) {
+                arOut.unshift(arIn[i]);
+            }
+            return arOut;
+        }
+
+        console.log(arReverse([1, 2, 3]));
+        let arr2 = [1, 2, 3];
+        console.log(arr2.reverse());
+
+        let arr3 = [0, 1, null, "Vasya", "Peter", false, undefined];
+        // for (let i in arr3) {
+        //   if (!arr3[i]) delete arr3[i];
+        //}
+
+        arr3 = arr3.filter(function (el) {
+            console.log('test', el, '=>', !!el)
+            return !!el;
+        })
+        // console.log(arr3);
+
+        let dateWeather = [
+            { name: 'Surgut', t: 2 },
+            { name: 'Oimyakon', t: -15 },
+            { name: 'sochi', t: 22 },
+        ]
+        console.table(dateWeather);
+        let warmData = dateWeather.filter(function (item) {
+            return item.t > 0;
+        });
+        console.log(warmData) 
+
+
+        function sum(a, b) {
+            return a + b;
+        }
+        console.log(sum(2, 3));
+        console.log(sum.call(null, 2, 3));
+
+
+        let student = {
+            name: 'Vasya P',
+            grade: 40,
+        }
+        function nakrutit(n) {
+            this.grade += n;
+        }
+        nakrutit.call(student, 30);
+        console.log(student)
+
+
+
+    </script>
+</body>
+</html>
